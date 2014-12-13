@@ -13,10 +13,7 @@
         <section>
             <h1>Message : ${message}</h1>
         </section>
-        <div>Get <a href="protected">protected</a> resource for admin.</div>
-        <div>Get <a href="confidential">confidential</a> resource for superadmin.</div>
-        <footer>
-            <div>Updated by Alex Art from <a href="https://in2circle.com" target="_blank">in2circle.com</a></div>
-        </footer>
+        <div><a href="desktop">Log in</a></div>
+        <div><a href="registration">Sign up</a></div>
     </body>
 </html>

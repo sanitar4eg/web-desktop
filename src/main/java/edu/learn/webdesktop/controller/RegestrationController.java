@@ -12,8 +12,7 @@ import edu.learn.webdesktop.domain.User;
 public class RegestrationController {
 
 	@RequestMapping(value = "/registration**", method = RequestMethod.GET)
-	
-	public String showRegistrationForm(Model model) {
+	public String getRegistration(Model model) {
 		model.addAttribute("user", new User());
 		return "registration";
 	}

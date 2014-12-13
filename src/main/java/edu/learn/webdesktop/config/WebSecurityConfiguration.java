@@ -29,30 +29,32 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
  
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userDetailsService);		//.passwordEncoder(passwordEncoder());
 	}
  
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-    	logger.warn("Using default configure(HttpSecurity). If subclassed this will potentially override subclass configure(HttpSecurity).");
+    	logger.warn("Subclassed this will potentially override subclass configure(HttpSecurity).");
 
-	    http.authorizeRequests().antMatchers("/**")
+	    http
+	    .authorizeRequests().antMatchers("/","registration").permitAll()
+	    .anyRequest()//.antMatchers("/desktop")
 		.access("hasRole('USER')").and().formLogin()
 		//.loginPage("/login").failureUrl("/login?error")
 		.usernameParameter("username")
 		.passwordParameter("password")
-		//.and().logout().logoutSuccessUrl("/login?logout")
+		.and().logout().logoutSuccessUrl("/")
 		.and().csrf();
 		//.and().exceptionHandling().accessDeniedPage("/403");
 	}
  
 	/*
-	 * 8bit BCrypt algorithm 
+	 * 8bit BCrypt algorithm.
 	 */
-	@Bean
+/*	@Bean
 	public PasswordEncoder passwordEncoder(){
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		return encoder;
-	}
+	}*/
  
 }

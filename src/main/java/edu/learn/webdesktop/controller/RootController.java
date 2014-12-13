@@ -1,46 +1,19 @@
 package edu.learn.webdesktop.controller;
 
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class RootController {
 
-	@RequestMapping(value = { "/", "/helloworld**" }, method = { RequestMethod.GET })
-	public ModelAndView welcomePage() {
+	@RequestMapping(value = { "/" }, method = { RequestMethod.GET })
+	public ModelAndView getHome() {
 		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security Tutorial");
+		model.addObject("title", "Web Desktop Application");
 		model.addObject("message", "Welcome Page !");
 		model.setViewName("home");
 		return model;
-	}
-
-	@RequestMapping(value = "/protected**", method = RequestMethod.GET)
-	public ModelAndView protectedPage() {
-
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security 3.2.4 Hello World Tutorial");
-		model.addObject("message",
-				"This is protected page - Only for Admin Users!");
-		model.setViewName("welcome");
-		return model;
-
-	}
-
-	@RequestMapping(value = "/confidential**", method = RequestMethod.GET)
-	public ModelAndView adminPage() {
-
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security 3.2.4 Hello World Tutorial");
-		model.addObject("message",
-				"This is confidential page - Need Super Admin Role!");
-		model.setViewName("welcome");
-
-		return model;
-
 	}
 }

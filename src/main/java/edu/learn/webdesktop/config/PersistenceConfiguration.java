@@ -36,7 +36,7 @@ public class PersistenceConfiguration {
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(
 				dataSource());
-		builder.scanPackages("edu.learn.webdesktop.domain").addProperties(
+		builder.scanPackages("edu.learn.webdesktop").addProperties(
 				getHibernateProperties());
 
 		return builder.buildSessionFactory();

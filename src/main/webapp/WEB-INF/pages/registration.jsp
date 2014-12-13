@@ -34,8 +34,8 @@
         </button>
     </form:form>
     <br>
-    <a href="<c:url value="login.html" />">
-        <spring:message text="Back to Login"></spring:message>
+    <a href="<c:url value="/" />">
+        <spring:message text="Back to Home"></spring:message>
     </a>
 </body>
 </html>

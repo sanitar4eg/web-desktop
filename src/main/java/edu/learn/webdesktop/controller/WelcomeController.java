@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles requests for the application home page.
@@ -24,7 +25,7 @@ public class WelcomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String getWelcome(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
@@ -33,9 +34,33 @@ public class WelcomeController {
 
 		String formattedDate = dateFormat.format(date);
 
-		model.addAttribute("serverTime", formattedDate);
+		model.addAttribute("message", formattedDate);
 
 		return "welcome";
+	}
+
+	@RequestMapping(value = "/protected", method = RequestMethod.GET)
+	public ModelAndView protectedPage() {
+
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "Spring Security Hello World");
+		model.addObject("message",
+				"This is protected page - Only for Admin Users!");
+		model.setViewName("welcome");
+		return model;
+
+	}
+
+	@RequestMapping(value = "/confidential", method = RequestMethod.GET)
+	public ModelAndView adminPage() {
+
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "Spring Security Hello World");
+		model.addObject("message",
+				"This is confidential page - Need Super Admin Role!");
+		model.setViewName("welcome");
+		return model;
+
 	}
 
 }

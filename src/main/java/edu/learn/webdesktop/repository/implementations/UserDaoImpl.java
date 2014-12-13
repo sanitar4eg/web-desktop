@@ -1,4 +1,4 @@
-package edu.learn.webdesktop.repository;
+package edu.learn.webdesktop.repository.implementations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,13 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.learn.webdesktop.domain.User;
+import edu.learn.webdesktop.repository.UserDao;
  
 @Repository
+@Transactional
 public class UserDaoImpl implements UserDao {
  
 	@Autowired
