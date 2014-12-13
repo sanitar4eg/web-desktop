@@ -13,7 +13,7 @@ public class ApplicationInitializer extends
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 
-		return new Class<?>[] { WebConfiguration.class };
+		return null;					//new Class<?>[] { WebConfiguration.class };
 	}
 
 	@Override
