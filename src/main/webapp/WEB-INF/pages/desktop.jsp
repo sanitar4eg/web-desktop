@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -11,6 +12,22 @@
 				Hello, ${user} 
 			</h2>
 	</c:if>
+	<hr/>
+	<form:form method="POST" commandName="customerForm" >
+		<table>
+			<tr>
+				<td>Widgets List:</td>
+				<td>
+                                </td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3"><input type="submit" /></td>
+			</tr>
+		</table>
+	</form:form>
+	<hr/>
 	
 	<c:if test="${journalName != null}">
 			<h2>

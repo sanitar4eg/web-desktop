@@ -37,7 +37,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     	logger.warn("Subclassed this will potentially override subclass configure(HttpSecurity).");
 
 	    http
-	    .authorizeRequests().antMatchers("/","registration").permitAll()
+	    .authorizeRequests().antMatchers("/","/registration**").permitAll()
 	    .anyRequest()//.antMatchers("/desktop")
 		.access("hasRole('USER')").and().formLogin()
 		//.loginPage("/login").failureUrl("/login?error")

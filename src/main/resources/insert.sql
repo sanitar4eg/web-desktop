@@ -4,3 +4,4 @@ insert into user_roles values (1,"USER", "qwas");
 insert into journals values (1, "journal","qwas");
 insert into tasks values (1,"dasdas","qwaafdsfasas",null,"qwaafdsfasas", 1);
 insert into tasks values (3,"dasdScffas","qfsaFASFwaafdsfasas",null,"qwaafdAFAFsfasas", 1);
+insert into widgets values (1,"Journal","qwas");

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.learn.webdesktop.domain.User;
+import edu.learn.webdesktop.domain.UserRole;
 import edu.learn.webdesktop.repository.UserDao;
  
 @Repository
@@ -20,20 +21,20 @@ public class UserDaoImpl implements UserDao {
  
 	@SuppressWarnings("unchecked")
 	public User findByUserName(String username) {
- 
 		List<User> users = new ArrayList<User>();
- 
 		users = sessionFactory.getCurrentSession()
 			.createQuery("from User where username=?")
 			.setParameter(0, username)
 			.list();
- 
 		if (users.size() > 0) {
 			return users.get(0);
 		} else {
 			return null;
 		}
- 
 	}
- 
+
+	@Override
+	public void addUser(User user) {
+		sessionFactory.getCurrentSession().save(user);
+	} 
 }

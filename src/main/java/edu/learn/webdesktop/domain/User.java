@@ -1,6 +1,8 @@
 package edu.learn.webdesktop.domain;
  
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,7 +21,7 @@ public class User {
 	@Id
 	@Column(name = "username", unique = true, 
 		nullable = false, length = 45)
-	private String username;
+	private String userName;
 	
 	@Column(name = "password", 
 			nullable = false, length = 60)
@@ -33,30 +35,34 @@ public class User {
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
 	private Journal journal;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+	private Set<Widget> widgets = new HashSet<Widget>();
  
 	public User() {
 	}
  
 	public User(String username, String password, boolean enabled) {
-		this.username = username;
+		this.userName = username;
 		this.password = password;
 		this.enabled = enabled;
 	}
  
 	public User(String username, String password, 
-		boolean enabled, Set<UserRole> userRole) {
-		this.username = username;
+		boolean enabled, Set<UserRole> userRole, Set<Widget> widgets) {
+		this.userName = username;
 		this.password = password;
 		this.enabled = enabled;
 		this.userRole = userRole;
+		this.widgets = widgets;
 	}
  
-	public String getUsername() {
-		return this.username;
+	public String getUserName() {
+		return this.userName;
 	}
  
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String username) {
+		this.userName = username;
 	}
  
 	public String getPassword() {
@@ -81,6 +87,22 @@ public class User {
  
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
+	}
+
+	public Set<Widget> getWidgets() {
+		return widgets;
+	}
+
+	public void setWidgets(Set<Widget> widgets) {
+		this.widgets = widgets;
+	}
+	
+	public List<String> getArrayOfWidgetsName() {
+		List<String> widgetsName = new ArrayList<String>();
+		for (Widget widget : widgets) {
+			widgetsName.add(widget.getWidgetName());
+		}
+		return widgetsName;
 	}
  
 }

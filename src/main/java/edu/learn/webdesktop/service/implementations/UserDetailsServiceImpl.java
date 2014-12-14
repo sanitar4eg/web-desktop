@@ -1,4 +1,4 @@
-package edu.learn.webdesktop.service;
+package edu.learn.webdesktop.service.implementations;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,10 +27,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
  
 	@Transactional(readOnly=true)
 	@Override
-	public UserDetails loadUserByUsername(final String username) 
+	public UserDetails loadUserByUsername(final String userName) 
 		throws UsernameNotFoundException {
  
-		edu.learn.webdesktop.domain.User user = userDao.findByUserName(username);
+		edu.learn.webdesktop.domain.User user = userDao.findByUserName(userName);
 		List<GrantedAuthority> authorities = 
                                       buildUserAuthority(user.getUserRole());
  
@@ -42,7 +42,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	// org.springframework.security.core.userdetails.User
 	private User buildUserForAuthentication(edu.learn.webdesktop.domain.User user, 
 		List<GrantedAuthority> authorities) {
-		return new User(user.getUsername(), user.getPassword(), 
+		return new User(user.getUserName(), user.getPassword(), 
 			user.isEnabled(), true, true, true, authorities);
 	}
  
