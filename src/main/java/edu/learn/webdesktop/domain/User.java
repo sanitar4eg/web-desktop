@@ -1,8 +1,6 @@
 package edu.learn.webdesktop.domain;
  
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -36,7 +34,7 @@ public class User {
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
 	private Journal journal;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade=CascadeType.ALL)
 	private Set<Widget> widgets = new HashSet<Widget>();
  
 	public User() {
@@ -95,14 +93,5 @@ public class User {
 
 	public void setWidgets(Set<Widget> widgets) {
 		this.widgets = widgets;
-	}
-	
-	public List<String> getArrayOfWidgetsName() {
-		List<String> widgetsName = new ArrayList<String>();
-		for (Widget widget : widgets) {
-			widgetsName.add(widget.getWidgetName());
-		}
-		return widgetsName;
-	}
- 
+	} 
 }

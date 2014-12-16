@@ -8,24 +8,27 @@
 <html>
 <body>
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
-			<h2>
-				Hello, ${user} 
-			</h2>
+		<h2>
+			Hello, ${user} 
+		</h2>
 	</c:if>
-	<hr/>
-	<form:form method="POST" commandName="customerForm" >
-		<table>
+	<hr/> <!--   -->
+	<form:form method="POST" modelAttribute="userEntity"
+			action = "${pageContext.request.contextPath}/desktop/resultwidgets"
+			>
+		<table border="1" cellpadding="5">
+		<tr>
+			<td>User</td>
+			<td>Widget</td>
+		</tr>
+		<c:forEach items="${widgetsList }" var="widget" varStatus="status">
 			<tr>
-				<td>Widgets List:</td>
-				<td>
-                                </td>
-				<td>
-				</td>
+				<td><form:checkbox path ="widgets" value = "${widget}"/></td>
+				<td><c:out value="${widget.widgetName}" /></td>
 			</tr>
-			<tr>
-				<td colspan="3"><input type="submit" /></td>
-			</tr>
+		</c:forEach>
 		</table>
+		<input type="submit">
 	</form:form>
 	<hr/>
 	
@@ -40,6 +43,7 @@
 	                <th>Description</th>
 	                <th>Minder Time</th>
 	                <th>Contacts</th>
+	                <th>Action</th>
 	            </tr>
 				<c:forEach items="${journalList}" var="task">
 					<tr>
@@ -47,31 +51,28 @@
 					  <td><c:out value="${task.getDescription()}" /></td>
 					  <td><c:out value="${task.getMinderTime()}" /></td>
 					  <td><c:out value="${task.getContacts()}" /></td>
+					 <!--   <td><input type="button" value="Delete" onclick="${journal.deleteTask(task.getName())}"/></td>
+					 -->
 					</tr>
 				</c:forEach>
 			</table>
 	</c:if>
 
-	<sec:authorize access="hasRole('USER')">
-		<!-- For login user -->
-		<c:url value="/logout" var="logoutUrl" />
-		<form action="${logoutUrl}" method="post" id="logoutForm">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />	
-		</form>
-		<script>
-			function formSubmit() {
-				document.getElementById("logoutForm").submit();
-			}
-		</script>
+	<c:url value="/logout" var="logoutUrl" />
+	<form action="${logoutUrl}" method="post" id="logoutForm">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />	
+	</form>
+	<script>
+		function formSubmit() {
+			document.getElementById("logoutForm").submit();
+		}
+	</script>
 
-		<c:if test="${pageContext.request.userPrincipal.name != null}">
-			<h2>
-				User : ${user} | <a
-					href="javascript:formSubmit()"> Logout</a>
-			</h2>
-		</c:if>
-
-
-	</sec:authorize>
+	<c:if test="${pageContext.request.userPrincipal.name != null}">
+		<h2>
+			User : ${user} | <a
+				href="javascript:formSubmit()"> Logout</a>
+		</h2>
+	</c:if>
 </body>
 </html>

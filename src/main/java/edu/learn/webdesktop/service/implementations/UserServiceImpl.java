@@ -1,5 +1,7 @@
 package edu.learn.webdesktop.service.implementations;
 
+import java.util.HashSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void addUser(User user) {
 		user.setEnabled(true);
+		//user.setUserRole(new HashSet<UserRole>().add(new UserRole(user,"USER"))); TODO Check this
 		userDao.addUser(user);
 		userRoleService.addUserRole(new UserRole(user,"USER"));
 	}

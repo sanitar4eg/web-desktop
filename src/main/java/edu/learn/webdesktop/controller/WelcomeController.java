@@ -48,7 +48,6 @@ public class WelcomeController {
 				"This is protected page - Only for Admin Users!");
 		model.setViewName("welcome");
 		return model;
-
 	}
 
 	@RequestMapping(value = "/confidential", method = RequestMethod.GET)
@@ -60,7 +59,6 @@ public class WelcomeController {
 				"This is confidential page - Need Super Admin Role!");
 		model.setViewName("welcome");
 		return model;
-
 	}
 
 }

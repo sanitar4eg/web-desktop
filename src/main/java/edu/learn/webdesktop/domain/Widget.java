@@ -60,5 +60,21 @@ public class Widget {
 	public void setWidgetName(String widget) {
 		this.widgetName = widget;
 	}
+	
+	@Override
+	public int hashCode() {
+		return new String(widgetName).hashCode();
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (! (obj instanceof Widget)) {
+            return false;
+        }
+        Widget objCast = (Widget) obj;
+        return this.widgetName.equalsIgnoreCase(objCast.widgetName);
+	}
 }

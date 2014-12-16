@@ -33,11 +33,15 @@ public class Journal {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "JOURNAL_ID", unique = true, nullable = false)
 	private Long id;
+	
 	@OneToOne()
 	@JoinColumn(name = "username")
 	private User user;
+	
 	private String name;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "journal",cascade=CascadeType.ALL)
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "journal"
+			,cascade=CascadeType.ALL)
 	@MapKey(name = "name")
 	private Map<String, Task> tasks;
 

@@ -13,11 +13,11 @@ public class ApplicationInitializer extends
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 
-		return null;					//new Class<?>[] { WebConfiguration.class };
+		return new Class<?>[] { WebConfiguration.class };
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] { "/" };
+		return new String[] { "/webdesktop" };
 	}
 }
