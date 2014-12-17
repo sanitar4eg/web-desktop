@@ -1,12 +1,9 @@
 package edu.learn.webdesktop.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.metamodel.SessionFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +20,12 @@ import edu.learn.webdesktop.domain.User;
 import edu.learn.webdesktop.domain.Widget;
 import edu.learn.webdesktop.service.JournalService;
 import edu.learn.webdesktop.service.UserService;
-import edu.learn.webdesktop.service.widgetservice.WidgetServices;
 
 @Controller
 public class DesktopController {
 	
 	private static final Logger logger = LoggerFactory
 			.getLogger(DesktopController.class);
-	
-	@Autowired 
-	WidgetServices widgetServices;
 	
 	@Autowired
 	JournalService journalService;
